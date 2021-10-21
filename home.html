@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    <style>
+        #container {          
+            height: 580px;
+            margin: 15px;
+            padding: 5px;
+            display: grid;
+            grid-gap: 1%;
+            grid-template-columns: 20% 40% 18% 18%;
+        }
+ 
+
+        #first>div {
+            display: grid;
+            grid-template-columns: 100%;          
+            font-size: 22px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            font-weight: 100;
+            cursor: pointer;
+        }
+
+        #first>div:nth-child(3) {
+            margin-bottom: 30px;
+        }
+
+        #first>div:nth-child(5) {
+            margin-bottom: 20px;
+        }
+
+        #first>div:nth-child(2) {
+            color: green;         
+            margin-top: 18px;
+        } 
+
+       
+        img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+     
+        <div id="first">
+            <div>NEWS</div>
+            <div>Join TechCrunch+</div>
+            <div>Login</div>
+            <div></div>
+
+            <input type="text" id="query" placeholder="search" />
+            <button onclick="searchnews()">Search</button>
+
+            <div></div>
+            <div>Disrupt</div>
+            <div>Startups</div>
+            <div>Videos</div>
+            <div>Audio</div>
+            <div>Newsletters</div>
+            <div>TechCrunch+</div>
+            <div>EC-1s</div>
+            <div>Advertise</div>
+            <div>Events</div>
+            <div>More</div>
+        </div>
+        <div id="second">
+            <div id="news"></div>
+        </div>
+
+        <div id="third"><h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam commodi culpa nemo nisi, delectus nulla!</h4><p>Lorem, ipsum.</p> <hr>
+
+            <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam commodi culpa nemo nisi, delectus nulla!</h4><p>Lorem, ipsum.</p> <hr>
+
+            <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam commodi culpa nemo nisi, delectus nulla!</h4><p>Lorem, ipsum.</p> <hr>
+
+            <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam commodi culpa nemo nisi, delectus nulla!</h4><p>Lorem, ipsum.</p> <hr>
+        
+        
+        
+        
+        
+        </div>
+
+        <div id="fourth">
+            <div>
+                <img src="https://polarcdn-terrax.com/image/v1.0.0/bin/615c924e8d00e2066b8aab24?v=a8347&w=260&h=195&autocrop=1" alt="">
+                <h3>Lorem ipsum dolor sit amet.</h3>
+            </div>
+
+            <div>
+                <img src="https://tpc.googlesyndication.com/simgad/15994764303616691764" alt="">
+                <h3>Lorem ipsum dolor sit amet consectetur.</h3>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script>
+  
+    let data = document.getElementById("second");
+
+    async function searchnews() {
+
+        let query = document.getElementById("query").value;
+
+        let res = await fetch(`http://newsapi.org/v2/everything?q=${query}&from=2021-09-18&sortBy=publishedAt&apiKey=df87bbfa3cdf4f729f5520e3b90bf458`);
+
+        let data = await res.json();
+        console.log("data: ", data);
+
+        appendNews(data.articles);
+    }
+
+    function appendNews(articles) {
+
+        articles.innerHTMl = null;
+
+        articles.forEach((articles) => {
+
+            let div = document.createElement("div");
+
+            let img = document.createElement("img");
+
+            img.src = articles.urlToImage;
+
+            let title = document.createElement("p");
+            title.innerHTML = articles.title;
+            title.style.fontWeight = 700;
+
+            div.append(img, title);
+
+            news.append(div);
+
+            
+        })
+    }
+</script>
+
+</html>
