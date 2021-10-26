@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>Change the buttons text color random value</h1>
+  <button>Click here to change my color</button>
+  
+</body>
+</html>
+
+<script>
+
+    var h1tag = document.querySelector("h1");
+    // console.log(h1tag);
+
+    var btn = document.querySelector('button');
+
+    btn.addEventListener("click",changeColor);
+
+  //  var randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+    //generates a random color -> #56eec7
+
+    function changeColor(){
+        console.log(event);
+        h1tag.style.color = '#'+Math.floor(Math.random()*16777215).toString(16);        
+    }
+  
+</script>
