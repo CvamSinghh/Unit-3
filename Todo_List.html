@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo-List</title>
+
+    <style>
+        body{
+            margin-left: 50px;
+        }
+        form{
+            width: 200px;
+        }
+        label{
+            font-size: large;
+        }
+        input{
+            height: 25px;
+            width: 200px;
+            border: 1px solid black;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        table{
+            margin-top: 25px;
+            border: 2px solid thistle;
+        }
+        th,td {  
+            /* font-size: 15px;           */
+            width: 70px;
+            text-align: center;
+
+            border: 2px solid teal;
+            padding: 5px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>Todo list</h1>
+    <form action="">
+        <label>Name</label>
+        <input id="name" type="text" placeholder="Enter Todo" />
+        <label>Quantity</label>
+        <input id="qty" type="number" placeholder="Enter quantity">
+
+        <label for="">Priority</label>
+        <select id="sel">
+            <option value="">---</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+        </select>
+
+        <input type="submit" value="Submit" />
+
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Priority</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr> -->
+        </tbody>
+    </table>
+
+
+</body>
+
+</html>
+
+<script>
+    var form = document.querySelector("form").addEventListener("submit", addItem);
+
+    function addItem(event) {
+        event.preventDefault();
+        var name = document.getElementById("name").value;
+        var quantity = document.getElementById("qty").value;
+        var priority = document.getElementById("sel").value;
+
+        console.log(name, quantity, priority);
+
+        var row = document.createElement("tr");  //  created a row.
+
+        var td1 = document.createElement("td");   // created 1st column for row. 
+        td1.textContent = name;
+
+        var td2 = document.createElement("td");   // created 2nd column for row.
+        td2.textContent = quantity;
+        var td3 = document.createElement("td");   // created 3rd column for row.
+        td3.textContent = priority; 
+        if ( priority === "high")
+        { td3.style.backgroundColor ="red"}
+
+        var td4 = document.createElement("td");
+        td4.textContent = "delete"
+
+        td4.addEventListener("click",removeTask);
+
+
+        // now we will append this column to row
+
+        row.append(td1,td2,td3,td4);   
+
+        // appending row to the table
+
+        var tbody = document.querySelector("tbody");
+        tbody.append(row);
+
+
+    }
+
+      function removeTask(event){
+          console.log(event.target);
+          event.target.parentNode.remove();
+      }
+
+
+
+</script>
