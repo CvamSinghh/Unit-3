@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      
+        body{
+              width: 80%;               
+              margin:auto;
+              margin-top: 50px;
+              
+          }
+  
+      </style>
+</head>
+<body>
+    <h1>The buttons color changes to a random value when it is clicked! But only two times!</h1>
+    <button>Click here to change my color !</button>
+</body>
+</html>
+
+<script>
+
+    var h1tag = document.querySelector("h1");
+ 
+   // console.log(h1tag);
+
+    var btn = document.querySelector("button");
+    btn.addEventListener("click",limitColor);
+    btn.addEventListener("mouseover",btnFont);
+    
+    var count = 0 ;
+    //console.log(btn);
+    function limitColor(){
+        count++;
+       // console.log(count)
+        if (count >= 2) {btn.removeEventListener("click",limitColor);}
+    
+         h1tag.style.color= '#'+Math.floor(Math.random()*16777215).toString(16);
+         
+    }
+
+      function btnFont(){
+          
+          btn.style.backgroundColor='#'+Math.floor(Math.random()*16777215).toString(16);
+          btn.style.fontSize = Math.floor((Math.random() * 35) + 15)+"px";
+      
+
+      }
+
+
+        
+
+
+</script>

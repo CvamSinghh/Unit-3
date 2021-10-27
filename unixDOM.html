@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linus Torvalds</title>
+
+    <style>
+        #container{
+            background-color: teal;
+            width: 150px;
+            height: 100px;
+        }
+        #div1A {
+            margin: 2% 33%;
+            background-color: rgb(224, 212, 212);
+            height:350px;            
+        } ;
+
+        #div1B{
+            padding-top: 10px;
+        }
+        #div1C{
+            margin:10px auto;
+            width: 28%;
+        }
+        #div1C > img{
+            src:"https://masai-course.s3.ap-south-1.amazonaws.com/resources/images/linus.jpg" ;
+            width: 85%;
+        }
+        #div1D > h1{
+            margin: 0px auto;
+            color:#030282;
+            font-size: 40px;
+            text-align: center;
+        }
+        #div1E{
+            padding-bottom: 5px;            
+        }
+        #div1E > p {
+            font-size: 30px;
+            text-align: center;
+
+        }
+        #div2A{
+            margin: 2% 25% ;
+        }
+
+        #div2B{
+            display: inline-block;
+            width: 15%;
+        }
+
+        #div2B > img{
+            src: "https://masai-course.s3.ap-south-1.amazonaws.com/resources/images/khan.jpg" ;
+            width: 100%;
+        }
+
+        #div2C{
+            display: inline-block;
+            vertical-align: top;
+            width:80%;
+        }
+        #div2E{
+            font-weight: 700;
+            margin: 0% 2%;
+            font-size: 35px;
+            color:#d30106;
+        }
+        #div2D > p{
+            color: #424242;
+            width: 100%;
+            font-size: 17px;
+            margin:5px 15px;
+        }
+
+        #box3{
+            background-color: #d35500;
+            margin:2% 6%;
+            height: 120px;
+
+        }
+        #div3A{
+            display: inline-block;
+            width: 48%;
+            height: 100%;
+            vertical-align: top;
+        }
+        #div3A > p:nth-child(1) {
+            color:white;
+            padding: 10px 30px;
+            font-size: 24px;
+            margin: 0px;
+        }
+        #div3A > p:nth-child(2){
+            width: 250px;
+            padding-left:30px;
+        }
+
+        #div3B{
+            display: inline-block;
+            width: 2px;
+            margin:1%;
+            border: solid black;
+            background-color: black;
+            height: 80px;
+        }
+
+        #div3C{
+            display: inline-block;
+            width: 48%;
+            height: 100%;
+            vertical-align: top;
+            text-align: right;
+        }
+   
+        #div3C > p:nth-child(1) {
+            color:white;
+            padding: 10px 30px;
+            margin:0px;
+        }
+        #div3C > p:nth-child(2) {
+            width:90%;
+            padding-left: 30px;
+            padding-top: 10px;         
+          
+        }
+
+    </style>
+</head>
+<body>
+   
+    <button>Create Page</button>
+</body>
+</html>
+
+<script>
+    
+    var container = document.createElement("div");
+   
+    container.setAttribute("id","container");
+ 
+    document.body.append(container);
+
+   // ---------------------
+
+    var box1 = document.createElement("div");
+    box1.setAttribute("id","box1");
+    var box1A = document.createElement("div");
+    box1A.setAttribute("id","div1A");
+    var box1B = document.createElement("div");
+    box1B.setAttribute("id","div1B");
+
+    var box1C = document.createElement("div");
+    box1C.setAttribute("id","div1C");
+    var img1 = document.createElement("img");
+    box1C.append(img1);
+
+    var box1D = document.createElement("div");
+    box1D.setAttribute("id","div1D");
+    var h1A = document.createElement("h1");
+    h1A.textContent = "Linus Torvalds"
+    box1D.append(h1A);
+
+    var box1E = document.createElement("div");
+    box1E.setAttribute("id","div1E");
+    var p1A = document.createElement("p");
+    p1A.textContent = "The creator of Linux & Git";
+    box1E.append(p1A);
+
+
+    box1A.append(box1B);
+    box1.append(box1A);
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

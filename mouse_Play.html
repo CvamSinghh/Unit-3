@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse_Play</title>
+    
+    <style>
+        #div1{
+
+            display: flex;
+            flex-direction: row-reverse;
+          
+            width: 600px;
+            height: 400px;
+            /* border: 2px solid red; */
+            margin:100px auto;
+            background-color: #4c9bd8;
+            border-radius: 10px;
+        }
+        #btn1{
+            align-self: flex-end;
+            margin: 50px;
+            font-size: 25px;
+          
+            width: 150px;
+            height: 70px;
+            border-radius: 15px;
+            background-color: #b14839;
+            /* margin-top: 300px; */
+       
+            
+        }
+    </style>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+   
+   // creating div container.
+    var div = document.createElement("div");
+  
+    // setting attribute to div like id.
+    div.setAttribute("id","div1")
+
+    // appending this div to page / document.
+    document.body.append(div);
+   // console.log(div);
+    
+   // creating button tag .
+    var btn = document.createElement("button");
+    btn.setAttribute("id","btn1");
+    btn.textContent = "Submit";
+
+    // appending that button to container div.
+    div.append(btn);
+
+    // adding eventlistener to div .
+    div.addEventListener("mouseenter",innerFn);
+    div.addEventListener("mouseleave",outerFn);
+
+    function innerFn(){
+        btn.style.backgroundColor= '#'+Math.floor(Math.random()*16777215).toString(16);
+    }
+
+    function outerFn(){
+        btn.style.backgroundColor = "#b14839";
+    }
+
+
+
+
+
+</script>

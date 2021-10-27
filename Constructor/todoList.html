@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            width: 20%;
+            margin: 20px auto;
+            background-color: lightcoral;
+            padding: 25px;
+            border-radius: 15px;
+
+
+        }
+        h1{
+            margin-top: 15px;
+        }
+
+
+        .btn {
+            width: 60px;
+            height: 20px;
+            margin-left: 60px;
+            margin-right: 10px;
+        }
+
+        hr {
+            color: blue;
+        }
+
+        #count {
+            font-size: 25px;
+            color: teal;
+        }
+    </style>
+</head>
+
+<body>
+    
+        <div id="container">
+
+            <h1>List of the task</h1>
+
+            <h2 id="count"> Count = 0</h2>
+
+            <input type="text" id="inp" />
+            <button onclick="task(event)">Submit</button>
+
+            <!-- <hr> -->
+            <div id="dis"></div>
+
+        </div>
+
+    
+
+</body>
+
+</html>
+
+<script>
+
+    var count = 0;
+    var countDis = document.getElementById("count");
+
+    //  this is a constructor function
+    function Tasklist(t) {
+
+        this.name = t;
+        this.date = new Date().toLocaleString();
+        this.status = "False";
+
+    }
+
+    //-----on submit function-------//
+
+    function task(e) {
+        e.preventDefault();
+
+        count++;
+        countDis.textContent = `Count = ${count}`;
+
+
+        var n = document.getElementById("inp").value;  // getting input value from user
+
+        let t1 = new Tasklist(n);         // creating another object using Constructor
+
+        // console.log(t1);
+
+        var d = document.getElementById("dis");  // accessing div from JS
+        var ml = document.createElement("ul");    // creating unordered list for task
+        var l1 = document.createElement("li");    // inside list for task name
+
+
+        var il = document.createElement("ul");
+        var l2 = document.createElement("li");     // inside list for date
+        var l3 = document.createElement("li");    // inside list for status
+
+        l1.innerText = t1.name;
+        l2.innerText = t1.date;
+        l3.innerText = t1.status;
+
+        il.append(l2, l3);       // appending date and status to inner list
+        ml.append(l1, il);        // appending task name & inner list to main list
+
+
+        d.append(ml);         // appending main list to html div
+
+        var inp = document.getElementById("inp");
+        inp.value = "";     // reset input value to empty string
+
+        // n = "";
+
+        var toggle = document.createElement("button");
+        toggle.setAttribute("class", "btn")
+
+        //----------toggle function-----------//
+        toggle.onclick = function () {
+
+            if (l3.innerText == "True") { l3.innerText = "False" }
+            else if (l3.innerText == "False") { l3.innerText = "True" }
+            il.append(l3);
+        }
+
+        toggle.innerText = "status";
+        //console.log (toggle)
+
+
+        var done = document.createElement("button");
+        done.innerText = "Done";
+        done.addEventListener("click", doneFn);
+
+        function doneFn() {
+            l1.style.textDecoration = "line-through";
+            l2.style.textDecoration = "line-through";
+            l3.style.textDecoration = "line-through";
+            l1.style.color = "green";
+            l2.style.color = "green";
+            l3.style.color = "green";
+        }
+
+        var remove = document.createElement("button");
+        remove.innerText = "Remove";
+        remove.addEventListener("click", removeFn);
+
+        function removeFn() {
+            ml.remove();
+            toggle.remove();
+            done.remove();
+            remove.remove();
+            hr.remove();
+            count--;
+            countDis.textContent = `Count = ${count}`;
+            // d.style.backgroundColor = "red";
+
+        }
+
+
+        var hr = document.createElement("hr");
+
+
+
+        d.append(toggle, done, remove)
+        d.append(hr);
+
+    }
+
+
+    //-----------status Change--------------//
+
+    // var id1 = document.g
+    btn.addEventListener("click", changeStatus)
+
+
+
+</script>
