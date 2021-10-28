@@ -7,11 +7,7 @@
     <title>Linus Torvalds</title>
 
     <style>
-        #container{
-            background-color: teal;
-            width: 150px;
-            height: 100px;
-        }
+      
         #div1A {
             margin: 2% 33%;
             background-color: rgb(224, 212, 212);
@@ -25,8 +21,7 @@
             margin:10px auto;
             width: 28%;
         }
-        #div1C > img{
-            src:"https://masai-course.s3.ap-south-1.amazonaws.com/resources/images/linus.jpg" ;
+        #div1C > img{          
             width: 85%;
         }
         #div1D > h1{
@@ -52,8 +47,7 @@
             width: 15%;
         }
 
-        #div2B > img{
-            src: "https://masai-course.s3.ap-south-1.amazonaws.com/resources/images/khan.jpg" ;
+        #div2B > img{            
             width: 100%;
         }
 
@@ -129,21 +123,34 @@
 
     </style>
 </head>
-<body>
-   
+<body>   
     <button>Create Page</button>
 </body>
 </html>
 
 <script>
-    
-    var container = document.createElement("div");
-   
-    container.setAttribute("id","container");
- 
-    document.body.append(container);
 
-   // ---------------------
+  
+   var btn = document.querySelector("button");
+   btn.addEventListener("click",displayFn);
+   btn.addEventListener("dblclick",hideFn);
+  
+   
+
+
+   var container = document.createElement("div");
+   container.setAttribute("id","container");
+
+
+   function hideFn(){
+       container.remove();
+   }
+  
+
+   function displayFn(){ 
+    
+
+   // --------------box-1---------------------//
 
     var box1 = document.createElement("div");
     box1.setAttribute("id","box1");
@@ -155,6 +162,7 @@
     var box1C = document.createElement("div");
     box1C.setAttribute("id","div1C");
     var img1 = document.createElement("img");
+    img1.src ="https://masai-course.s3.ap-south-1.amazonaws.com/resources/images/linus.jpg"
     box1C.append(img1);
 
     var box1D = document.createElement("div");
@@ -169,29 +177,80 @@
     p1A.textContent = "The creator of Linux & Git";
     box1E.append(p1A);
 
-
+    box1B.append(box1C,box1D,box1E);
     box1A.append(box1B);
     box1.append(box1A);
 
+   
 
+    //----------------- box-2--------------------//
+
+    var box2 = document.createElement("div");
+    box2.setAttribute("id","box2");
+    var box2A = document.createElement("div");
+    box2A.setAttribute("id","div2A");
+
+    var box2B = document.createElement("div");
+    box2B.setAttribute("id","div2B");
+    var img2 = document.createElement("img");
+    img2.src = "https://masai-course.s3.ap-south-1.amazonaws.com/resources/images/khan.jpg" ;
+    box2B.append(img2);
+
+
+    var box2C = document.createElement("div");
+    box2C.setAttribute("id","div2C");
     
 
+    var box2D = document.createElement("div");
+    box2D.setAttribute("id","div2D");
+
+    var box2E = document.createElement("div");
+    box2E.setAttribute("id","div2E");
+    box2E.textContent="Sal Khan";
+
+    var p2A = document.createElement("p");
+    p2A.textContent = "Salman Khan is the founder of the Khan Academy which has a mission of providing a free world-class education for anyone, anywhere.";
+
+    box2D.append(box2E,p2A);
+    box2C.append(box2D);
+    box2A.append(box2B,box2C);
+    box2.append(box2A);
 
 
+    //-----------------box-3----------------------//
 
 
+    var box3 = document.createElement("div");
+    box3.setAttribute("id","box3");
+
+    var box3A = document.createElement("div");
+    box3A.setAttribute("id","div3A");
+    var p3A = document.createElement("p");
+    p3A.textContent = "Ken Thompson";
+    var p4A = document.createElement("p");
+    p4A.textContent = "Designed and implemented the original Unix operating system";
+    box3A.append(p3A,p4A);
+
+    var box3B = document.createElement("div");
+    box3B.setAttribute("id","div3B");
+
+    var box3C = document.createElement("div");
+    box3C.setAttribute("id","div3C");
+    var p3A = document.createElement("p");
+    p3A.textContent = "Dennis Ritchie";
+    var p4A = document.createElement("p");
+    p4A.textContent = "The creator of C programming Language";
+    box3C.append(p3A,p4A);
+
+    box3.append(box3A,box3B,box3C)   
 
 
+   //-----------------------------------------------// 
+    container.append(box1,box2,box3);
+    document.body.append(container);
 
+   }
 
-
-
-
-
-
-
-
-
-
+  
 
 </script>
