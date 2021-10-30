@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    Prototype and Inheritance.
+    
+</body>
+</html>
+
+<script>
+
+
+  const shoe = {
+      brand:"Adidas",
+      size: 9 ,
+      year: 2021,
+  };
+ 
+  // one object can't have more than one prototype
+  const shoe2 = Object.create(shoe);
+  shoe2.quantity = 2;
+  shoe2.type = "sports";
+
+   // the property we, inherit always go to the prototype. 
+   const sneakers = Object.create(shoe2);   
+   sneakers.price = 1000;
+//    sneakers.type = "shoe "
+  //  console.log("sneakers",sneakers);
+
+
+   //-------------------------------------------//
+
+   const post = {
+       name : "Aaj bhai inherit karega",
+       likes : 200,
+       user : "nrupul",
+   };  // prototype;
+
+   function Comment(n,u){
+       this.comment = n;
+       this.user = u;
+   }
+   
+   Comment.prototype = post;
+
+   let c1 = new Comment("nice pic dear","shivam");
+   console.log("c1",c1);
+   let c2 = new Comment("nice","xyz");
+   console.log("c2 ",c2);
+   
+
+   //------------------------------------------------------//
+   //------------------------------------------------------//
+
+ /*
+    let arr = new MyArray("raju","shyam","babu bhaiya");
+    // console.log("arr",arr);
+  
+
+    function MyArray(){
+       // console.log(arguments);
+
+       Object.defineProperty(this,"length",{value:0,
+      writable:true,
+     enumerable:false,
+    });
+
+        this.length = arguments.length;
+
+        for (let i = 0; i < this.length; i++){
+            this[i] = arguments[i];
+        }
+      
+    };
+
+    //-----------------------------------//
+   
+        MyArray.prototype.jodo = function (value){
+
+            let index = this.length;
+            this[index] = value;
+            this.length++;
+ 
+        };   
+
+     MyArray.prototype.hatao = function (){
+
+            let indextoRemove = this.length-1;
+            delete this[indextoRemove];
+
+            this.length--;
+  
+        };
+   
+
+         
+        console.log("arr =",Object.values(arr));
+         arr.hatao();
+         console.log("arr =",Object.values(arr));
+
+         arr.jodo("nrupul");
+         console.log("arr =",Object.values(arr));
+         arr.jodo("ankush")
+         console.log("arr =",Object.values(arr));
+         arr.hatao();
+         arr.hatao();
+         arr.hatao();
+         console.log("arr =",Object.values(arr));
+         arr.jodo("nrupul");
+         console.log("arr =",Object.values(arr));
+         arr.jodo("ankush")
+         console.log("arr =",Object.values(arr));
+        */ 
+       
+
+  
+  
+
+
+
+</script>

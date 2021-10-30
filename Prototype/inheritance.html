@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Family tree</h2>
+</body>
+
+</html>
+
+
+<script>
+
+
+    function Constructor(n,age) {
+        this.name = n;
+        this.age = age;
+    };
+
+    let ancesstor = {
+        home : "house 1",
+        family_name : "Rajputra",
+
+    }
+
+    //Constructor.prototype = ancesstor;
+
+    let grandpa = new Constructor("Ayodhya Singh",103);
+    console.log(grandpa);
+    grandpa.prototype = ancesstor;
+  
+    let father = new Constructor("Shri Shionath Singh",55);
+    let son = new Constructor("Shivam",27)
+
+
+    console.log(grandpa);
+    console.log(father);
+    console.log(son);
+
+
+
+
+
+
+
+    // let grandpa = {
+    //     family_name : "Rajputra",
+    //     religion : "Hindu",   
+
+    // };
+
+    //  let father = {
+    //      country  : "India",
+    //      state : "Bihar",
+    //  };
+
+    //  father.prototype = grandpa;
+    //  console.log(father);
+
+
+    //  let son = {
+    //      city:"Sasaram",
+    //      pincode: "821115",
+    //  };
+
+
+    //  console.log("Grandpa =",grandpa);
+    //  grandpa.prototype = father;
+    //  console.log("Father = ",father);
+
+    //  console.log("Son =",son)
+
+     //grandpa.prototype = father;
+
+
+
+
+
+</script>

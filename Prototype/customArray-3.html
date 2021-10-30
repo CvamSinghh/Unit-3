@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Custom Array-3</h2>
+</body>
+
+</html>
+
+<script>
+
+    // Use the .Prototype property availible on constructor functions to add custom methods to your Array constructor function.
+    // Add the following methods
+    // Pushing a new value to the array
+    // Reversing the array and returning it
+    // printing the array in Array format, not the object one.
+    // return the first element from the array
+
+    function CustomArr() {
+
+        Object.defineProperty(this, "length", {
+            value: 0,
+            writable: true,
+            enumerable: false,
+        });
+
+        this.length = arguments.length
+        for (let i = 0; i < arguments.length; i++) {
+            this[i] = arguments[i]
+
+        }
+    }
+
+    CustomArr.prototype.jodo = function (value) {
+
+        let index = this.length;
+        this[index] = value;
+        this.length++;
+    }
+
+    CustomArr.prototype.bhagao = function () {
+
+        let indextoRemove = this.length - 1;
+
+        delete this[indextoRemove];
+
+        this.length--;
+    }
+
+    CustomArr.prototype.palatdo = function () {
+
+        for (let i = 0; i < this.length / 2; i++) {
+
+            [this[i], this[this.length - 1 - i]] = [this[this.length - i - 1], this[i]];
+
+        }
+
+        
+    }
+
+    var x = new CustomArr("Nrupul","Aman","Ankush","Pratik");
+
+    console.log(x);
+ 
+     x.jodo("Albert") ;
+     x.jodo("Shivam")  
+    console.log(Object.values(x));
+
+   // x.bhagao() ;   
+   
+    x.palatdo();
+    console.log(Object.values(x));
+
+    
+
+
+
+
+</script>
