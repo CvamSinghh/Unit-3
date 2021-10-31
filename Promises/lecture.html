@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Promises lecture</h2>
+
+    <form onsubmit="register(event)" action="">
+        <input id="inp" type="text" placeholder="Name">
+        <input id="age" type="number" placeholder="Age">
+        <input type="submit" value="clickme">
+    </form>
+
+</body>
+
+</html>
+
+<script>
+
+    let queue = ["Messi", "Ronaldo", "Utkarsh", "Shinchan"];
+
+    //-----------step-1 register---------------//
+    function register(event) {
+        event.preventDefault();
+        var name = document.getElementById("inp").value;
+        var age = document.getElementById("age").value;
+        if (age > 60 )
+        {queue.unshift(name)}
+        else {queue.push(name)}
+
+        console.log(queue);
+
+        let msg = `${name} your registration is successful`;
+
+        window.alert(msg);
+
+        let mypromise = new Promise(function (resolve,reject) {
+
+            // keep on checking after certain amount of time , if promise is fulfilled
+           let interval = setInterval(function () {
+                if (queue[0] === name) {
+                    resolve(`${name} its your turn now`);
+                    clearInterval(interval);
+                }
+
+            }, 1000)
+
+        });
+
+
+
+        mypromise.then(function (res) {
+            alert(res);
+
+        })
+
+        mypromise.catch(function (rej) {
+
+        })
+
+
+    }
+
+    //--------------------------------------------//
+    function startVaccination() {
+        queue.shift()
+        if (queue.length === 0) { clearInterval(interval) };
+
+        console.log("queue", queue)
+    }
+
+ 
+  
+
+    let interval = setInterval(startVaccination, 3000);
+     
+</script>

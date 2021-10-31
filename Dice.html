@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            width: 30%;
+            margin: 25px auto;
+            text-align: center;
+        }
+
+        button {
+            width: 200px;
+            height: 40px;
+            font-size: large;
+        }
+
+        div {
+            align-self: center;
+            margin: 2px auto;
+            margin-top: 15px;
+            padding-top: 15px;
+            width: 100px;
+            height: 40px;
+            border: 1px solid teal;
+            justify-content: center;
+            font-size: x-large;
+            font-weight: bold;
+            border-radius: 10px;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Dice-Game</h2>
+    <button onclick="throwDice()">Throw Dice</button>
+
+
+</body>
+
+</html>
+
+<script>
+    function throwDice() {
+        // alert(`clicked`)
+      
+      
+        var div = document.createElement("div");
+    
+        var x = Math.floor((Math.random() * 6) + 1);
+
+        if(x === 6) {div.style.backgroundColor = "green"}
+       else if(x === 1) {div.style.backgroundColor = "red"}
+       else { div.style.backgroundColor  = '#'+Math.floor(Math.random()*16777215).toString(16);}
+
+        console.log(x);
+        div.append(x);
+        document.body.append(div);
+
+    }
+</script>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            width: 70%;
+            margin: 25px auto;
+            text-align: center;
+        }
+        button{           
+            width:100px;
+            height: 40px;
+            font-size: large;
+        }
+        ul{            
+            font-size: 30px;            
+            margin: 2px;
+            margin-top: 20px;
+     
+        }
+        li{ margin-top: 15px;
+            font-size:22px;
+            text-align: left;
+            text-decoration:none;
+        }
+    </style>
+</head>
+<body>
+
+
+  <h1>Learn JavaScript</h1>
+  <button onclick = "fnObj()">Objects</button>
+  <button onclick = "fnArr()">Arrays</button>
+  <button onclick = "fnFun()">Functions</button>
+  <button onclick = "fnStr()">Strings</button>
+  <button onclick = "fnNum()">Numbers</button>
+  <button onclick = "fnNull()">Null</button>
+  <button onclick = "fnUnd()">Undefined</button>
+
+  <div></div>
+
+    
+</body>
+</html>
+
+<script>
+
+    var div = document.querySelector("div");
+
+    function fnObj(){
+       // console.log("clicked");
+       div.innerText="";
+        var ulmain = document.createElement("ul");
+        var limain = document.createElement("li");
+        limain.textContent = "About Objects";
+
+        var ul = document.createElement("ul");
+        var li1 = document.createElement("li");     
+        li1.textContent = "Everything in javaScript is an Object.";
+
+        var li2 = document.createElement("li");
+        li2.textContent = "Encapsulation − the capability to store related information, whether data or methods, together in an object.";
+
+        var li3 = document.createElement("li");
+        li3.textContent = "Aggregation − the capability to store one object inside another object.";
+
+        var li4 = document.createElement("li");
+        li4.textContent = "Inheritance − the capability of a class to rely upon another class (or number of classes) for some of its properties and methods.";
+
+        var li5 = document.createElement("li");
+        li5.textContent = "Polymorphism − the capability to write one function or method that works in a variety of different ways.";
+
+        ul.append(li1,li2,li3,li4,li5);
+        ulmain.append(limain,ul)     
+      
+
+        div.append(ulmain);
+        document.body.append(div)
+    }
+   //-----------------------------------------------//
+
+   
+   function fnArr(){
+       // console.log("clicked");
+       div.innerText="";
+        var ulmain = document.createElement("ul");
+        var limain = document.createElement("li");
+        limain.textContent = "About Arrays";
+
+        var ul = document.createElement("ul");
+        var li1 = document.createElement("li");     
+        li1.textContent = "An array is an ordered list of values. Each value is called an element specified by an index.";
+
+        var li2 = document.createElement("li");
+        li2.textContent = "An array can hold values of different types. For example, you can have an array that stores the number and string, and boolean values.";
+
+        var li3 = document.createElement("li");
+        li3.textContent = "The length of an array is dynamically sized and auto-growing. In other words, you don’t need to specify the array size upfront.";
+
+        var li4 = document.createElement("li");
+        li4.textContent = "To add an element to the beginning of an array, you use the unshift() method:";
+
+        var li5 = document.createElement("li");
+        li5.textContent = "Arrays are a special type of objects. The typeof operator in Js returns “object” for arrays.";
+
+        ul.append(li1,li2,li3,li4,li5);
+        ulmain.append(limain,ul)     
+      
+
+        div.append(ulmain);
+        document.body.append(div)
+    }
+ //------------------------------------------------//
+ 
+ function fnFun(){
+    div.innerText="";
+       // console.log("clicked");
+        var ulmain = document.createElement("ul");
+        var limain = document.createElement("li");
+        limain.textContent = "About Function";
+
+        var ul = document.createElement("ul");
+        var li1 = document.createElement("li");     
+        li1.textContent = "Functions are the first-class citizens in JavaScript. In other words, you can treat functions like values of other types.";
+
+        var li2 = document.createElement("li");
+        li2.textContent = "To avoid repeating the same code all over places, you can use a function to wrap that code and reuse it.";
+
+        var li3 = document.createElement("li");
+        li3.textContent = "A function can accept zero, one, or multiple parameters. If there are multiple parameters, you need to separate them by commas (,).";
+
+        var li4 = document.createElement("li");
+        li4.textContent = "Inside the function body, you can implement the logic. For example, the following say() function simply shows a message to the console:";
+
+        var li5 = document.createElement("li");
+        li5.textContent = "The function immediately stops executing when the return statement is reached. Therefore, you can use the return statement without a value to exit the function prematurely.";
+
+        ul.append(li1,li2,li3,li4,li5);
+        ulmain.append(limain,ul)     
+      
+
+        div.append(ulmain);
+        document.body.append(div)
+    }
+
+    //-------------Strings-----------------------//
+
+     
+ function fnStr(){
+       // console.log("clicked");
+       div.innerText="";
+        var ulmain = document.createElement("ul");
+        var limain = document.createElement("li");
+        limain.textContent = "About Strings";
+
+        var ul = document.createElement("ul");
+        var li1 = document.createElement("li");     
+        li1.textContent = "JavaScript strings are primitive values. JavaScript strings are also immutable. It means that if you process a string, you will always get a new string. The original string doesn’t change.";
+
+        var li2 = document.createElement("li");
+        li2.textContent = "To create literal strings in JavaScript, you use either single quotes or double quotes.";
+
+        var li3 = document.createElement("li");
+        li3.textContent = "To access the characters in a string, you use the array-like [] notation with the zero-based index.";
+
+        var li4 = document.createElement("li");
+        li4.textContent = "JavaScript strings are primitive values and immutable.";
+
+        var li5 = document.createElement("li");
+        li5.textContent = "The match() method allows you to match a string with a specified regular expression and get an array of results.";
+
+        ul.append(li1,li2,li3,li4,li5);
+        ulmain.append(limain,ul)     
+      
+
+        div.append(ulmain);
+        document.body.append(div)
+    }
+
+    //-----------------------Number-----------------//
+
+        
+ function fnNum(){
+       // console.log("clicked");
+       div.innerText="";
+        var ulmain = document.createElement("ul");
+        var limain = document.createElement("li");
+        limain.textContent = "About Number";
+
+        var ul = document.createElement("ul");
+        var li1 = document.createElement("li");     
+        li1.textContent = "Besides the primitive number type, JavaScript also provides the Number reference type for numeric values.";
+
+        var li2 = document.createElement("li");
+        li2.textContent = "To format a number with a specified number of decimal points, you use the toFixed() method.";
+
+        var li3 = document.createElement("li");
+        li3.textContent = "The toFixed() method returns the corresponding string of the number using fixed-point notation.";
+
+        var li4 = document.createElement("li");
+        li4.textContent = "To get a number value as a string, you use the toString() or toLocaleString() methods.";
+
+        var li5 = document.createElement("li");
+        li5.textContent = "If you call a method on a primitive number value, JavaScript will convert it into a Number object temporarily. This feature is called primitive wrapper types in JavaScript.";
+
+        ul.append(li1,li2,li3,li4,li5);
+        ulmain.append(limain,ul)     
+      
+
+        div.append(ulmain);
+        document.body.append(div)
+    }
+
+ //----------------------Null-----------------//   
+        
+ function fnNull(){
+       // console.log("clicked");
+       div.innerText="";
+        var ulmain = document.createElement("ul");
+        var limain = document.createElement("li");
+        limain.textContent = "About Null";
+
+        var ul = document.createElement("ul");
+        var li1 = document.createElement("li");     
+        li1.textContent = "JavaScript null is a primitive type that contains a special value null.";
+
+        var li2 = document.createElement("li");
+        li2.textContent = "If you find a variable or a function that returns null, it means that the expected object couldn’t be created.";
+
+        var li3 = document.createElement("li");
+        li3.textContent = "To check if a value is null , you use the strict equality operator === .";
+
+        var li4 = document.createElement("li");
+        li4.textContent = "Besides false, 0, an empty string (''), undefined, NaN, null is a falsy value. It means that JavaScript will coerce null to false in conditionals. ";
+
+        var li5 = document.createElement("li");
+        li5.textContent = "In JavaScript, null is a primitive value, not an object. It turns out that this is a historical bug from the first version of JavaScript that may never be fixed.";
+
+        ul.append(li1,li2,li3,li4,li5);
+        ulmain.append(limain,ul)     
+      
+
+        div.append(ulmain);
+        document.body.append(div)
+    }
+
+    //------------Undefined--------------//
+
+    function fnUnd(){
+       // console.log("clicked");
+       div.innerText="";
+        var ulmain = document.createElement("ul");
+        var limain = document.createElement("li");
+        limain.textContent = "About Undefined";
+
+        var ul = document.createElement("ul");
+        var li1 = document.createElement("li");     
+        li1.textContent = "The undefined is a primitive type in JavaScript. So the undefined is a type. And the undefined type has exactly one value that is undefined.";
+
+        var li2 = document.createElement("li");
+        li2.textContent = "When you declare a variable and don’t initialize it to a value, this variable will have a value undefined.";
+
+        var li3 = document.createElement("li");
+        li3.textContent = "If you access a non-existing property of an object, you’ll get undefined.";
+
+        var li4 = document.createElement("li");
+        li4.textContent = "A function without return statement or with return statement but without expression returns undefined.";
+
+        var li5 = document.createElement("li");
+        li5.textContent = "JavaScript assigns ‘undefined’ to any object that has been declared but not initialized or defined. In other words, in a case where no value has been explicitly assigned to the variable, JavaScript calls it ‘undefined’.";
+
+        ul.append(li1,li2,li3,li4,li5);
+        ulmain.append(limain,ul)     
+      
+
+        div.append(ulmain);
+        document.body.append(div)
+    }
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+</script>
