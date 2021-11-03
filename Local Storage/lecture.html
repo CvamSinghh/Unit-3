@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Storage</title>
+</head>
+
+<body>
+
+    <h2>Local Storage Counter </h2>
+    <h2 id = "res"></h2>
+    <button id="inc">Increment</button>
+    <button id="dec">Decrement</button>
+
+</body>
+
+</html>
+<script>
+   
+    var count = JSON.parse(localStorage.getItem("counter"))  || 0 ;
+  
+
+    document.getElementById("inc").addEventListener("click",incFn);   // 1st method to write a function.
+
+    
+  
+/*   
+//----other way to write eventlistener---//
+document.getElementById("inc").addEventListener("click",function(){  // 2nd method to write a function
+       console.log("here it is 2nd method")
+   });
+
+   document.getElementById("inc").addEventListener("click",function(){   //3rd way to write a function.
+       decFn()
+   });
+*/
+//-------------------------------------//
+function incFn(){
+        count++;
+       localStorage.setItem("counter",JSON.stringify(count))
+        document.getElementById("res").textContent = count;
+        console.log(count)
+    };
+
+
+    document.getElementById("dec").addEventListener("click",decFn); 
+
+    function decFn(){
+        count--;
+        localStorage.setItem("counter",JSON.stringify(count))
+        document.getElementById("res").textContent = count;
+        console.log(count)
+    };
+
+
+      window.addEventListener("load",function(){
+        document.getElementById("res").textContent = count;
+      })
+
+
+
+</script>
