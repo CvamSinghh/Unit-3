@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch</title>
+    <style>
+        #container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            width: 90%;
+            border: 2px solid teal;
+            border-radius: 15px;
+            margin: 5px auto;
+            /* justify-content: center; */
+            align-items: center;
+            padding: 10px;
+
+            /* background-image: url("https://assets.nflxext.com/ffe/siteui/vlv3/b77751c7-0e02-4941-af39-30514ff6b3e2/d0f20efa-f2f3-49d4-92b2-b3b1f6312af5/IN-en-20211026-popsignuptwoweeks-perspective_alpha_website_large.jpg"); */
+
+        }
+
+
+
+        #dis>div {
+            border: 2px solid red;
+            border-radius: 5px;
+            height: 60%;
+            margin-top: 20px;
+
+        }
+
+        img {
+            width: 100%;
+            height: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+
+        <form action="">
+            <h1>Movie Search Engine</h1>
+            <input type="text" placeholder="Movie name" id="inp">
+            <input type="submit">
+
+        </form>
+        <div id="dis"></div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    //  http://www.omdbapi.com/?i=tt3896198&apikey=28e651f
+
+    //  poster http://img.omdbapi.com/?apikey=[yourkey]&
+
+    //  all data request  http://www.omdbapi.com/?apikey=[yourkey]&
+
+
+
+    var myForm = document.querySelector("form");
+    myForm.addEventListener("submit", upload);
+    let div = document.getElementById("dis");
+
+
+
+    //-----requesting data-------//
+    async function upload(e) {
+        e.preventDefault()
+
+        try {
+            let inp = document.getElementById("inp").value;
+            //console.log(inp)
+            let req = await fetch(`http://www.omdbapi.com/?t=${inp}&apikey=28e651f`)
+            req = await req.json()
+
+
+            console.log(req);
+             display(req)
+          
+        }
+
+        catch (err) {
+              console.log("No matches found")
+            //error();
+        }
+
+    }
+
+    //-----------display-----------//
+
+    function display(data) {
+
+        div.innerText = "";
+
+        //  data.forEach((index) => {
+
+        let mydiv = document.createElement("div");
+        let img = document.createElement("img");
+        img.src = data.Poster;
+        let h3 = document.createElement("h3");
+        h3.innerText = `Title :${data.Title}`
+        let date = document.createElement("p");
+        date.innerText = `Released :${data.Released}`
+        let rating = document.createElement("h3");
+        rating.innerText = `Ratings :${data.imdbRating}`
+
+     
+        mydiv.append(img, h3, date, rating);
+        div.append(mydiv);
+     
+
+    }
+
+    //------------ error function--------------//
+
+    function error(){
+
+        div.innerText = "";
+        let mydiv = document.createElement("div");
+        let img = document.createElement("img");
+        img.src = "https://c.tenor.com/x-ltMhystd4AAAAC/sorry-sad.gif";
+        let h3 = document.createElement("h3");
+        h3.innerText = `Sorry couldn't found !`;
+
+        mydiv.append(img, h3);
+        div.append(mydiv);
+
+    }
+
+    error();
+
+
+</script>
