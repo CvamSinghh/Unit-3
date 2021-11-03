@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        form {
+            width: 300px;
+            margin: 50px auto;
+
+        }
+
+        input {
+            margin: 10px;
+            height: 20px;
+            border: 2px solid teal;
+        }
+    </style>
+
+</head>
+<body>
+  
+
+    <form action="">
+        <h2>SignIn</h2>
+        <input type="email" id="email" placeholder = "Email">
+        <input type="password" id="password" placeholder= "Password">
+        <input type="submit">
+    </form>
+</body>
+</html>
+
+<script>
+       var myForm = document.querySelector("form");
+    
+
+       myForm.addEventListener("submit",signIn);
+
+       function signIn(e){
+           e.preventDefault();
+
+           var users = JSON.parse(localStorage.getItem("data")) ;
+           console.log(users)
+           let email = myForm.email.value;
+           let password = myForm.password.value;
+
+           users.forEach(function (user){
+            
+           if ( email === user.email   && password === user.password)
+           {
+               window.alert("Logged in successfully")
+               window.location.href ="index.html"
+           }
+        })
+
+         
+
+       }
+
+</script>
