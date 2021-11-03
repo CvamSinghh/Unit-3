@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        th,
+        td {
+            border: 2px solid teal;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Shopping List</h1>
+    <form action="">
+        <label for="">Name</label>
+        <input type="text" placeholder="Enter Name" id="name">
+        <label for="">Quantity</label>
+        <input id="qty" type="number" placeholder="quantity">
+        <label for="">Priority</label>
+        <select name="" id="priority">
+            <option value="--">--</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+        </select>
+        <input type="submit" placeholder="submit">
+
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Priority</th>
+                <th>Delete</th>
+            </tr>
+        <tbody>
+
+        </tbody>
+        </thead>
+    </table>
+
+</body>
+
+</html>
+
+<script>
+
+    var myform = document.querySelector("form");
+    myform.addEventListener("submit", addItem);
+
+
+    var shoppingList = JSON.parse(localStorage.getItem("bucket")) || [];
+
+
+    function addItem(event) {
+        event.preventDefault()
+
+        var name = document.getElementById("name").value;
+        var qty = document.getElementById("qty").value;
+        var priority = document.getElementById("priority").value;
+
+       // console.log(name, qty, priority);
+
+        var list = {
+            itemName: name,
+            quantity: qty,
+            priority: priority,
+
+        };
+
+        console.log(list);
+
+        shoppingList.push(list);
+
+        localStorage.setItem("bucket", JSON.stringify(shoppingList))
+
+        display(shoppingList);  // invoking the function for displaying in page.
+
+        //-----display function-------//
+
+    }
+
+
+    function display() {
+        document.querySelector("tbody").innerText = "";
+       // console.log("display", shoppingList);
+        shoppingList.map(function (item,index) {
+            var tr = document.createElement("tr");
+            var td1 = document.createElement("td");
+            td1.textContent = item.itemName;
+            var td2 = document.createElement("td");
+            td2.textContent = item.quantity;
+            var td3 = document.createElement("td");
+            td3.textContent = item.priority;
+            var td4 = document.createElement("td");
+            td4.innerHTML = "<button>delete</button>"
+            td4.addEventListener("click", function () {
+                makeDelete(index);
+            })
+            tr.append(td1, td2, td3, td4);
+            document.querySelector("tbody").append(tr)
+        })
+
+    }
+
+
+
+
+    window.addEventListener("load", function () {
+        display();
+    });
+
+    function makeDelete(index){   
+        console.log(shoppingList)   
+        shoppingList.splice(index,1);
+        localStorage.setItem("bucket",JSON.stringify(shoppingList));  
+        console.log(shoppingList)
+        
+        display();
+     
+    }
+
+
+</script>
