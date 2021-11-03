@@ -8,38 +8,49 @@
     <title>Fetch</title>
     <style>
         #container {
+            background-color: darkcyan;
+            text-align: center;
             display: flex;
             flex-direction: column;
             width: 90%;
             border: 2px solid teal;
             border-radius: 15px;
             margin: 5px auto;
-            justify-content: center;
+            /* justify-content: center; */
             align-items: center;
             padding: 10px;
+
             /* background-image: url("https://assets.nflxext.com/ffe/siteui/vlv3/b77751c7-0e02-4941-af39-30514ff6b3e2/d0f20efa-f2f3-49d4-92b2-b3b1f6312af5/IN-en-20211026-popsignuptwoweeks-perspective_alpha_website_large.jpg"); */
 
         }
 
-        #dis {
-            display: grid;
-            grid-template-columns: repeat(4, 20%);
-            gap: 5px;
-            justify-content: space-evenly;
 
-            width: 100%;
-            height: 450px;
-            overflow-y: auto;
-        }
 
         #dis>div {
             border: 2px solid red;
             border-radius: 5px;
+            height: 60%;
+            margin-top: 20px;
 
         }
 
         img {
             width: 100%;
+            height: 50%;
+        }
+
+        #recom {
+            color: #FDD835;
+            background-color: black;
+            height: 50px;
+            font-size: 25px;
+
+        }
+
+        input {
+            border: 2px solid black;
+            height: 25px;
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -83,17 +94,21 @@
 
         try {
             let inp = document.getElementById("inp").value;
-
-            let req = await fetch(`http://www.omdbapi.com/?s=${inp}&apikey=28e651f`)
+            //console.log(inp)
+            let req = await fetch(`http://www.omdbapi.com/?t=${inp}&apikey=28e651f`)
             req = await req.json()
-            data = req.Search;
 
-            console.log(data);
-            display(data)
+
+            console.log(req);
+            if (req.Response == "False") { error() }
+
+            else { display(req) }
+
         }
 
         catch (err) {
             console.log(err)
+
         }
 
     }
@@ -104,25 +119,56 @@
 
         div.innerText = "";
 
-        var arr = data.filter(function (x) {
-            return +x.imdbRating > 5;
-        })
 
-        console.log(arr);
 
-        arr.forEach((ele) => {
-            let mydiv = document.createElement("div");
-            let img = document.createElement("img");
-            img.src = ele.Poster;
-            let h3 = document.createElement("h3");
-            h3.innerText = ele.Title
+        let mydiv = document.createElement("div");
+        let img = document.createElement("img");
+        img.src = data.Poster;
+        let h3 = document.createElement("h3");
+        h3.innerText = `Title :${data.Title}`
+        let date = document.createElement("p");
+        date.innerText = `Released :${data.Released}`
+        let rating = document.createElement("h3");
+        rating.innerText = `Ratings :${data.imdbRating}`
 
-            console.log(ele.Poster);
-            mydiv.append(img, h3);
+        if (+data.imdbRating > 8.5) {
+
+            let recom = document.createElement("div");
+            recom.setAttribute("id", "recom")
+            recom.innerText = `Recommended`;
+
+
+            console.log("working")
+            mydiv.append(img, h3, date, rating);
+            div.append(recom, mydiv);
+
+        }
+
+        else {
+            mydiv.append(img, h3, date, rating);
             div.append(mydiv);
-        })
+        }
+
 
     }
+
+    //------------ error function--------------//
+
+    function error() {
+
+        div.innerText = "";
+        let mydiv = document.createElement("div");
+        let img = document.createElement("img");
+        img.src = "https://c.tenor.com/x-ltMhystd4AAAAC/sorry-sad.gif";
+        let h3 = document.createElement("h3");
+        h3.innerText = `Sorry couldn't found !`;
+
+        mydiv.append(img, h3);
+        div.append(mydiv);
+
+    }
+
+
 
 
 </script>
