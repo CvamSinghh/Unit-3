@@ -9,27 +9,24 @@
     <style>
         #container {
             background-color: darkcyan;
+            border: 2px solid black;
             text-align: center;
             display: flex;
             flex-direction: column;
             width: 90%;
-            border: 2px solid teal;
             border-radius: 15px;
             margin: 5px auto;
-            /* justify-content: center; */
             align-items: center;
             padding: 10px;
 
-            /* background-image: url("https://assets.nflxext.com/ffe/siteui/vlv3/b77751c7-0e02-4941-af39-30514ff6b3e2/d0f20efa-f2f3-49d4-92b2-b3b1f6312af5/IN-en-20211026-popsignuptwoweeks-perspective_alpha_website_large.jpg"); */
 
         }
 
 
 
         #dis>div {
-            border: 2px solid red;
+            border: 2px solid black;
             border-radius: 5px;
-            height: 60%;
             margin-top: 20px;
 
         }
@@ -44,6 +41,7 @@
             background-color: black;
             height: 50px;
             font-size: 25px;
+            padding-top: 10px;
 
         }
 
@@ -136,6 +134,8 @@
             let recom = document.createElement("div");
             recom.setAttribute("id", "recom")
             recom.innerText = `Recommended`;
+            rating.style.color = "Darkred";
+            rating.style.fontSize = "24px";
 
 
             console.log("working")
