@@ -84,13 +84,15 @@
             req = await req.json()
 
 
-            console.log(req);
-             display(req)
-          
+           console.log(req);
+            if (req.Response == "False") {error() }
+            
+            else { display(req)}
+             
         }
 
         catch (err) {
-              console.log("No matches found")
+             // console.log(err)
             //error();
         }
 
@@ -137,7 +139,7 @@
 
     }
 
-    error();
+
 
 
 </script>
