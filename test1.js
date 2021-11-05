@@ -1,18 +1,26 @@
- 
 
-function print(n){
-    console.log(n);
+let a = 7;
+let b = 5;
+
+
+sum();
+res();
+
+function sum() {
+   
+    console.log("sum=",a + b );
 }
 
-// print("shivam");
 
- //name("gajanan")
+var res = () => {
+    console.log("arrow =",a + b);
 
-//  printName();
+};
 
-printName();
-let printName = ()=> {
-    console.log("gajanan")
-}
+
+
+
+
+
 
 

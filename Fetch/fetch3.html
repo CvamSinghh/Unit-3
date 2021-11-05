@@ -79,11 +79,9 @@
     //  all data request  http://www.omdbapi.com/?apikey=[yourkey]&
 
 
-
     var myForm = document.querySelector("form");
     myForm.addEventListener("submit", upload);
     let div = document.getElementById("dis");
-
 
 
     //-----requesting data-------//
@@ -92,9 +90,9 @@
 
         try {
             let inp = document.getElementById("inp").value;
-            //console.log(inp)
+
             let req = await fetch(`http://www.omdbapi.com/?t=${inp}&apikey=28e651f`)
-            req = await req.json()
+            req = await req.json();
 
 
             console.log(req);

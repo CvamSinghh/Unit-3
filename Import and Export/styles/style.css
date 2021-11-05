@@ -1,0 +1,33 @@
+
+        #navbar {
+            display: flex;
+            justify-content: space-between;
+            padding-left: 4%;
+            padding-right: 4%;
+            border: 2px solid teal;
+        }
+
+        #option {
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+        #option h3 {
+            padding-left: 30px;
+            padding-right: 10px;
+        }
+
+        #container{
+            display: grid;
+            grid-template-columns: repeat(4,22%);
+            gap: 20px;
+            justify-content: center;
+            padding: 5%;
+            align-items: baseline;
+        }
+
+        img{
+            width:25%;
+        }
+ 

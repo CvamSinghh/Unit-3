@@ -13,7 +13,7 @@
             text-align: center;
             display: flex;
             flex-direction: column;
-            width: 90%;          
+            width: 90%;
             border-radius: 15px;
             margin: 5px auto;
             align-items: center;
@@ -71,29 +71,27 @@
     myForm.addEventListener("submit", upload);
     let div = document.getElementById("dis");
 
-
-
     //-----requesting data-------//
     async function upload(e) {
         e.preventDefault()
 
         try {
             let inp = document.getElementById("inp").value;
-            //console.log(inp)
+
             let req = await fetch(`http://www.omdbapi.com/?t=${inp}&apikey=28e651f`)
             req = await req.json()
 
+            // console.log(req);
 
-            console.log(req);
             if (req.Response == "False") { error() }
 
             else { display(req) }
 
+
         }
 
-        catch (err) {
-            // console.log(err)
-            //error();
+        catch (error) {
+            console.log(error);
         }
 
     }
@@ -103,8 +101,6 @@
     function display(data) {
 
         div.innerText = "";
-
-        //  data.forEach((index) => {
 
         let mydiv = document.createElement("div");
         let img = document.createElement("img");

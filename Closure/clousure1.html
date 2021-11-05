@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fetch</title>
+    <title>Closure1</title>
     <style>
         #container {
             background-color: darkcyan;
@@ -14,14 +14,11 @@
             display: flex;
             flex-direction: column;
             width: 90%;
-            height: 580px;           
+            height: 580px;
             border-radius: 15px;
             margin: 5px auto;
-
             align-items: center;
             padding: 10px;
-
-
         }
 
         #dis {
@@ -38,7 +35,6 @@
             border-radius: 5px;
             margin-top: 20px;
             color: darkred;
-
         }
 
         img {
@@ -57,11 +53,14 @@
     <div id="container">
 
         <form action="">
+
             <h1>Movie Search Engine</h1>
-            <input type="text" placeholder="Movie name" id="inp">
-            <input type="submit">
+
+            <input  type="text" placeholder="Movie name" id="inp">
+            <!-- <input type="submit"> -->
 
         </form>
+
         <div id="dis"></div>
 
     </div>
@@ -78,59 +77,27 @@
 
     //  all data request  http://www.omdbapi.com/?apikey=[yourkey]&
 
+    // oninput is a event in javascript,every time a key is pressed it is an oninput event.
 
+      
 
-    var myForm = document.querySelector("form");
-    myForm.addEventListener("submit", upload);
-    let div = document.getElementById("dis");
+     document.getElementById("inp").addEventListener("input", searchMovies);
 
+    // search movie...
 
+    function searchMovies(e) {         
+     
+         e.preventDefault() ;
+      
 
-    //-----requesting data-------//
-    async function upload(e) {
-        e.preventDefault()
+        let mydiv = document.getElementById("dis");
 
-        try {
-            let inp = document.getElementById("inp").value;
-           // console.log(inp)
-            let req = await fetch(`http://www.omdbapi.com/?s=${inp}&apikey=28e651f`)
-            req = await req.json();
-           // console.log(req);
+        let inp = document.getElementById("inp").value;      
 
-            data = req.Search;
+        document.body.append(mydiv);
 
-           // console.log(data);
-            display(data)
-        }
-
-        catch (err) {
-            console.log(err)
-        }
+        console.log(inp);
 
     }
 
-    //-----------display-----------//
-
-    function display(data) {
-
-        div.innerText = "";
-
-        data.forEach((index) => {
-
-            let mydiv = document.createElement("div");
-            let img = document.createElement("img");
-            img.src = index.Poster;
-            let h3 = document.createElement("h3");
-            h3.innerText = index.Title
-            let h4 = document.createElement("h3");
-            h4.innerText = `Year of Released : ${index.Year}`;
-
-            console.log(index.Poster);
-            mydiv.append(img, h3, h4);
-            div.append(mydiv);
-        })
-
-    }
-
-
-</script>
+    </script>
