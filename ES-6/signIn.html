@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <style>
+        form {
+            width: 250px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <form id="sign" action="">
+        <h2>SignUp</h2>
+        <input type="text" placeholder="Name" id="name">
+        <input type="email" placeholder="Email" id="email">
+        <input type="password" placeholder="Password" id="pass">
+        <input type="text" placeholder="username" id="uname">
+        <input type="number" placeholder="Mobile" id="mob">
+        <input type="text" placeholder="description" id="des">
+        <input type="submit" name="" id="sub1">
+    </form>
+
+    <form id="log" action="">
+
+        <h2>LogIn</h2>
+
+        <input type="text" placeholder="username" id="username">
+        <input type="password" placeholder="Password" id="password">
+        <input type="submit" name="" id="sub2">
+
+    </form>
+</body>
+
+</html>
+
+<script>
+
+    let signform = document.getElementById("sign");
+    signform.addEventListener("submit", signUp)
+
+    let loginform = document.getElementById("log");
+    loginform.addEventListener("submit", logIn)
+
+    // console.log(signform,loginform)
+
+    function signUp(e) {
+        e.preventDefault();
+
+        let user = {
+            name: signform.name.value,
+            email: signform.email.value,
+            password: signform.pass.value,
+            username: signform.uname.value,
+            mobile: signform.mob.value,
+            description: signform.des.value,
+        }
+
+        user_data = JSON.stringify(user);
+
+        fetch("http://masai-api-mocker.herokuapp.com/auth/register", {
+            method: "POST",
+            body: user_data,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+
+            .then((res) => {
+                return res.json();
+            })
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+
+
+    }
+
+    //----------------------------//
+
+    function logIn(e) {
+        e.preventDefault();
+
+        let user = {
+            username: loginform.username.value,
+            password: loginform.password.value,
+
+        }
+
+        user_data = JSON.stringify(user);
+
+        fetch("http://masai-api-mocker.herokuapp.com/auth/login", {
+            method: "POST",
+            body: user_data,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+
+            .then((res) => {
+                return res.json();
+            })
+            .then((res) => {
+
+                fetchmyData(user.username, res.token);
+
+            })
+            .catch((err) => {
+                console.log(err);
+                alert(res.message);
+
+            })
+    }
+
+    //---------local storage----------//
+  
+
+    function fetchmyData(user, token) {
+
+        console.log("user=",user);
+        console.log("token",token);
+
+        fetch(`http://masai-api-mocker.herokuapp.com/user/${user}`, {
+
+            headers: {
+                'Content-Type': 'application/json',
+
+                Authorization: `Bearer ${token}`
+
+            },
+
+        })
+
+            .then((res) => {
+                return res.json();
+            })
+            .then((res) => {
+                console.log(res);
+
+                window.localStorage.setItem("register",JSON.stringify(user));
+                window.location.href = "lecture.html"
+
+                
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+
+    }
+
+
+
+</script>

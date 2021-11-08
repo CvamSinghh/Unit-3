@@ -83,14 +83,16 @@
     var myForm = document.querySelector("form");
     myForm.addEventListener("submit", upload);
     let div = document.getElementById("dis");
-
-
+  
 
     //-----requesting data-------//
     async function upload(e) {
         e.preventDefault()
+     
+
 
         try {
+    
             let inp = document.getElementById("inp").value;
            // console.log(inp)
             let req = await fetch(`http://www.omdbapi.com/?s=${inp}&apikey=28e651f`)

@@ -31,7 +31,7 @@
 
 <body>
 
-    <input oninput="debounce(main,2000)" type="text" id="movie" placeholder="Enter movie name" />
+    <input oninput="debounce(main,4000)" type="text" id="movie" placeholder="Enter movie name" />
 
     <div id="dis"></div>
 </body>
@@ -44,7 +44,7 @@
     var timerId;
     let movies_div = document.getElementById("dis");
 
-
+    
 
 
     async function main() {
@@ -95,7 +95,7 @@
         movies.forEach(element => {
 
             let p = document.createElement("p");
-            p.innerText = element.Title;
+            p.innerText = element.Title;                 
 
             movies_div.append(p);
 
@@ -113,7 +113,8 @@
 
         // for e.g "ave" -  setTimeout - func - main()- search(Movies("ave"));
         // now for "aven" - setTimeout - func() - main() - searchMovies("aven")
-
+        
+       
         if (timerId) {
             clearTimeout(timerId)
         }
@@ -122,9 +123,10 @@
             func()
 
         }, delay);
+
     }
 
-
+    
 
 
 

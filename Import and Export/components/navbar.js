@@ -8,10 +8,8 @@
         <h3><a href="electronics.html">Electronics</a></h3>
         <h3><a href="#">Sign In</a></h3>
         <h3><a href="#">Sign Up</a></h3>
-    </div>
-
-
-</div>`
+    </div>`
+     
  }
 
    export default navbar    // function name

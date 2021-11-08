@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube-1</title>
+
+    <style>
+        #dis {
+            margin-top: 15px;
+            display: grid;
+            grid-template-columns: repeat(4, 20%);
+            gap: 2%;
+            justify-content: space-evenly;
+        }
+
+        #option {
+            display: flex;
+            justify-content: space-around;
+            vertical-align: middle;
+        }
+
+        #inp {
+            width: 35%;
+            height: 40px;
+        }
+        #ham{
+            width: 4%;
+            height: 40px;
+        }
+        #logo{
+            height: 40px;
+            width: 150px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="option">
+
+        <img src="https://cdn-icons-png.flaticon.com/128/545/545705.png" id="ham" alt="youtube png">
+        <img src="https://t3.ftcdn.net/jpg/03/03/78/34/240_F_303783442_F4zE29PpiDaLBCmRqrnA0j2x5RaGUC6a.jpg" id="logo" alt="youtube png">
+
+        <input type="text" placeholder="Search video" id="inp">
+        <input onclick="searchVideos()" type="submit" name="">
+        <h2><a href="jewellery.html">Jewellery</a></h2>
+        <h2><a href="electronics.html">Electronics</a></h2>
+        <h2><a href="signIn.html">Profile</a></h2>
+
+    </div>
+
+
+
+
+
+    <div id="dis"></div>
+
+</body>
+
+</html>
+
+
+<script>
+
+    // api key   AIzaSyDnPHujY-tSfU96mcjBScTJdFax6dXcQNo
+
+    // fetch url -   GET https://youtube.googleapis.com/youtube/v3/search?key=[YOUR_API_KEY] 
+
+    // GET https://youtube.googleapis.com/youtube/v3/search?maxResults=8&q=string&type=video&key=AIzaSyDnPHujY-tSfU96mcjBScTJdFax6dXcQNo
+
+
+    let div = document.getElementById("dis");
+
+    async function searchVideos() {
+
+        let inp = document.getElementById("inp").value;
+        console.log(inp);
+
+        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?maxResults=20&q=${inp}&type=video&key=AIzaSyDnPHujY-tSfU96mcjBScTJdFax6dXcQNo`);
+
+        res = await res.json();
+
+        let data = res.items;
+
+        console.log(data);
+
+        appendVideos(data)
+
+    }
+
+    function appendVideos(data) {
+
+        div.innerHTML = "";
+
+        data.forEach(({ id: { videoId } }) => {
+
+            console.log(videoId);
+            let mydiv = document.createElement("div");
+
+            mydiv.innerHTML = `<iframe width="300" height="215" src="https://www.youtube.com/embed/${videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+
+            div.append(mydiv);
+
+            // console.log(mydiv);
+
+        })
+
+
+
+    }
+
+
+
+</script>
