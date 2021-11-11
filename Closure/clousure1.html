@@ -5,28 +5,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Closure1</title>
+    <title>Document</title>
+
     <style>
-        #container {
+         #container {
             background-color: darkcyan;
             border: 2px solid black;
             text-align: center;
             display: flex;
             flex-direction: column;
             width: 90%;
-            height: 580px;
+            height: 580px;           
             border-radius: 15px;
             margin: 5px auto;
+
             align-items: center;
             padding: 10px;
+
+
         }
 
         #dis {
-            display: grid;
-            grid-template-columns: repeat(4, 20%);
-            gap: 5px;
-            justify-content: space-evenly;
-            width: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid black;
+          
+            justify-content: center;
+            width: 30%;
             overflow-y: auto;
         }
 
@@ -35,6 +40,7 @@
             border-radius: 5px;
             margin-top: 20px;
             color: darkred;
+
         }
 
         img {
@@ -47,57 +53,121 @@
             border-radius: 10px;
         }
     </style>
+
+
+
 </head>
 
 <body>
     <div id="container">
 
         <form action="">
-
             <h1>Movie Search Engine</h1>
-
-            <input  type="text" placeholder="Movie name" id="inp">
-            <!-- <input type="submit"> -->
+            <input oninput="debounce(main,2000)" type="text" placeholder="Enter Movie name" id="inp">        
 
         </form>
-
         <div id="dis"></div>
 
     </div>
 
+    <!-- <input oninput="debounce(main,2000)" type="text" id="movie" placeholder="Enter movie name" />
+
+    <div id="dis"></div> -->
 </body>
 
 </html>
 
 <script>
+    // search movies - done
 
-    //  http://www.omdbapi.com/?i=tt3896198&apikey=28e651f
+    var timerId;
+    let movies_div = document.getElementById("dis");
 
-    //  poster http://img.omdbapi.com/?apikey=[yourkey]&
 
-    //  all data request  http://www.omdbapi.com/?apikey=[yourkey]&
 
-    // oninput is a event in javascript,every time a key is pressed it is an oninput event.
 
-      
+    async function main() {
+        // e.preventDefault();
+        let name = document.getElementById("inp").value;
+        // get searched Movie name
 
-     document.getElementById("inp").addEventListener("input", searchMovies);
+        if (name.length < 3)   // we don't want to frequently call send API. 
+        {
+            return false;
+        }
 
-    // search movie...
+        let res = await searchMovies(name);   //  calling function to search through API
 
-    function searchMovies(e) {         
-     
-         e.preventDefault() ;
-      
 
-        let mydiv = document.getElementById("dis");
+        let data = res.Search    // no need to write .json() as the returned data is already converted into json format 
 
-        let inp = document.getElementById("inp").value;      
+        console.log(data);
 
-        document.body.append(mydiv);
+        appendMovies(data)    // calling function to display the result.
+    }
 
-        console.log(inp);
+
+
+    async function searchMovies(Movie_name) {
+
+        try {
+            let res = await fetch(`http://www.omdbapi.com/?s=${Movie_name}&apikey=28e651f`)
+
+            let data = await res.json();
+
+            return data;
+
+        }
+
+        catch (err) {
+            console.log(err);
+        }
 
     }
 
-    </script>
+    function appendMovies(movies) {
+        if (movies === undefined) {
+            return false;
+        }
+
+        movies_div.innerHTML = null;   // making null show that, it won't add the previous searched result.
+
+        movies.forEach(element => {
+
+            let p = document.createElement("p");
+            p.innerText = element.Title;
+
+            movies_div.append(p);
+
+
+        });
+    }
+
+
+
+    //------------------------by debouncing-----------------//
+
+    function debounce(func, delay) {
+
+        // here func == main
+
+        // for e.g "ave" -  setTimeout - func - main()- search(Movies("ave"));
+        // now for "aven" - setTimeout - func() - main() - searchMovies("aven")
+
+
+        if (timerId) {
+            clearTimeout(timerId)
+        }
+
+        timerId = setTimeout(() => {
+            func()
+
+        }, delay);
+
+    }
+
+
+
+
+
+</script>

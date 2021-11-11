@@ -21,7 +21,7 @@
             width: 350px;
             border: 1px solid salmon;
             overflow: scroll;
-         
+
         }
     </style>
 
@@ -30,10 +30,20 @@
 </head>
 
 <body>
+    <div id="container">
 
-    <input oninput="debounce(main,4000)" type="text" id="movie" placeholder="Enter movie name" />
+        <form action="">
+            <h1>Movie Search Engine</h1>
+            <input oninput="debounce(main,2000)" type="text" placeholder="Enter Movie name" id="inp">        
 
-    <div id="dis"></div>
+        </form>
+        <div id="dis"></div>
+
+    </div>
+
+    <!-- <input oninput="debounce(main,2000)" type="text" id="movie" placeholder="Enter movie name" />
+
+    <div id="dis"></div> -->
 </body>
 
 </html>
@@ -44,7 +54,7 @@
     var timerId;
     let movies_div = document.getElementById("dis");
 
-    
+
 
 
     async function main() {
@@ -95,7 +105,7 @@
         movies.forEach(element => {
 
             let p = document.createElement("p");
-            p.innerText = element.Title;                 
+            p.innerText = element.Title;
 
             movies_div.append(p);
 
@@ -113,8 +123,8 @@
 
         // for e.g "ave" -  setTimeout - func - main()- search(Movies("ave"));
         // now for "aven" - setTimeout - func() - main() - searchMovies("aven")
-        
-       
+
+
         if (timerId) {
             clearTimeout(timerId)
         }
@@ -126,7 +136,7 @@
 
     }
 
-    
+
 
 
 
