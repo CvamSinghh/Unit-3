@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #container {
+            background-color: darkcyan;
+            border: 2px solid black;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            width: 90%;
+            height: 580px;
+            border-radius: 15px;
+            margin: 5px auto;
+
+            align-items: center;
+            padding: 10px;
+
+
+        }
+
+        #dis {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid black;
+            border-radius: 5px;
+
+            justify-content: center;
+            width: 30%;
+            overflow-y: auto;
+        }
+
+
+        img {
+            width: 100%;
+        }
+
+        input {
+            border: 2px solid black;
+            height: 25px;
+            border-radius: 10px;
+        }
+
+        p {
+            margin: 0px;
+            cursor: pointer;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+    <div id="container">
+
+        <form action="">
+            <h1>Movie Search Engine</h1>
+            <input oninput="debounce(main,2000)" autocomplete="off" type="text" placeholder="Enter Movie name" id="inp">
+
+        </form>
+        <div id="dis"></div>
+
+    </div>
+
+    <!-- <input oninput="debounce(main,2000)" type="text" id="movie" placeholder="Enter movie name" />
+
+    <div id="dis"></div> -->
+</body>
+
+</html>
+
+<script>
+    // search movies - done
+
+    var timerId;
+    let movies_div = document.getElementById("dis");
+
+
+
+
+    async function main() {
+        // e.preventDefault();
+        let name = document.getElementById("inp").value;
+        // get searched Movie name
+
+        if (name.length < 3)   // we don't want to frequently call send API. 
+        {
+            return false;
+        }
+
+        let res = await searchMovies(name);   //  calling function to search through API
+
+
+        let data = res.Search    // no need to write .json() as the returned data is already converted into json format 
+
+        console.log(data);
+
+        appendMovies(data)    // calling function to display the result.
+    }
+
+
+
+    async function searchMovies(Movie_name) {
+
+        try {
+            let res = await fetch(`http://www.omdbapi.com/?s=${Movie_name}&apikey=28e651f`)
+
+            let data = await res.json();
+
+            return data;
+
+        }
+
+        catch (err) {
+            console.log(err);
+        }
+
+    }
+
+    function appendMovies(movies) {
+        if (movies === undefined) {
+            return false;
+        }
+
+        movies_div.innerHTML = null;   // making null show that, it won't add the previous searched result.
+
+        movies.forEach(element => {
+
+            let p = document.createElement("p");
+            p.innerText = element.Title;
+            let img = document.createElement("img");
+            img.src = element.Poster;
+            let imdb = document.createElement("h4")
+            imdb.innerText = `imdbID :${element.imdbID}`;
+
+            movies_div.append(p);
+            p.addEventListener("click", details)
+
+            function details() {
+
+                movies_div.innerHTML = "";
+                movies_div.append(img, p, imdb);
+
+            }
+
+
+        });
+    }
+
+
+
+    //------------------------by debouncing-----------------//
+
+    function debounce(func, delay) {
+
+        // here func == main
+
+        // for e.g "ave" -  setTimeout - func - main()- search(Movies("ave"));
+        // now for "aven" - setTimeout - func() - main() - searchMovies("aven")
+
+
+        if (timerId) {
+            clearTimeout(timerId)
+        }
+
+        timerId = setTimeout(() => {
+            func()
+
+        }, delay);
+
+    }
+
+
+
+
+
+</script>
